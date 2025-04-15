@@ -2,8 +2,8 @@
 
 ## Tecnologias utilizadas
 
-- **Frontend:** React, MUI, React Router, Axios
-- **Backend:** Node.js, Express, Zod, JWT, Pino
+- **Frontend:** React, Typescript, MUI, React Router, Axios
+- **Backend:** Node.js, Typescript, Express, Zod, JWT, Pino
 - **Testes:** Jest, Supertest
 - **Infra:** Docker, Docker Compose
 - **Extra:** Simulação de envio de email com SQS e [Localstack](https://www.localstack.cloud/)
