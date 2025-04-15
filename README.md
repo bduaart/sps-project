@@ -27,7 +27,7 @@
 ### Como executar
 ```bash
 
-cd test-sps-react
+$ cd test-sps-react
 $ docker-compose up --build
 ```
 ##
@@ -39,12 +39,12 @@ Ter o Node.js na versão 18 ou superior.
 
 ```bash
 # Frontend
-cd test-sps-react
-yarn install
+$ cd test-sps-react
+$ yarn install
 
 # Backend
-cd test-sps-server
-yarn install
+$ cd test-sps-server
+$ yarn install
 
 ```
 
