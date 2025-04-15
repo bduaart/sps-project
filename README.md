@@ -26,6 +26,8 @@
 
 ### Como executar
 ```bash
+
+cd test-sps-react
 $ docker-compose up --build
 ```
 ##
