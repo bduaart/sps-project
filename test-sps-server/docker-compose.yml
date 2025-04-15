@@ -1,0 +1,46 @@
+
+services:
+  api:
+    build: .
+    container_name: node-crud-api
+    ports:
+      - "3000:3000"
+      - "9555:9229"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    env_file:
+      - .env
+    command: [ "yarn", "debug" ]
+    networks:
+      - net_crud_api
+    depends_on:
+      - localstack
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs
+      - AWS_DEFAULT_REGION=us-east-1
+      - SQS_ENDPOINT_STRATEGY=path
+    volumes:
+      - "./localstack/init-sqs.sh:/etc/localstack/init/ready.d/init-sqs.sh"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - net_crud_api
+
+  worker:
+    build: .
+    container_name: node-crud-worker
+    command: yarn worker
+    depends_on:
+      - localstack
+    networks:
+      - net_crud_api
+
+networks:
+  net_crud_api:
+    name: net_crud_api
