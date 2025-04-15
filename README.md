@@ -43,7 +43,7 @@ cd test-sps-react
 yarn install
 
 # Backend
-cd ../test-sps-server
+cd test-sps-server
 yarn install
 
 ```
@@ -57,9 +57,9 @@ $ yarn dev
 
 # test-sps-server (Backend)
 $ cd test-sps-server
-$ yarn start
+$ yarn dev
 
-# worker (em outro terminal)
+# worker (Necessário LocalStack)
 $ cd test-sps-server
 $ yarn worker 
 ```
