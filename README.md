@@ -69,7 +69,7 @@ $ yarn worker
 ---
 
 
-### Execuntado Testes
+### Executando Testes
 
 ```bash
 
