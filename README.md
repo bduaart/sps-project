@@ -30,6 +30,8 @@
 $ cd test-sps-react
 $ docker-compose up --build
 ```
+
+---
 ##
 ## Executando a aplicação com Yarn
 ### Requisitos
@@ -63,6 +65,9 @@ $ yarn dev
 $ cd test-sps-server
 $ yarn worker 
 ```
+
+---
+
 
 ### Execuntado Testes
 
