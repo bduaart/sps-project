@@ -6,7 +6,7 @@
 - **Backend:** Node.js, Typescript, Express, Zod, JWT, Pino
 - **Testes:** Jest, Supertest
 - **Infra:** Docker, Docker Compose
-- **Extra:** Simulação de envio de email com SQS e [Localstack](https://www.localstack.cloud/)
+- **Extra:** Simulação de envio de email com [SQS](https://aws.amazon.com/pt/sqs/) e [Localstack](https://www.localstack.cloud/)
 
 ---
 
