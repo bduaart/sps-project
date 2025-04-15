@@ -50,7 +50,7 @@ $ yarn install
 
 ```
 
-## Como executar
+### Como executar
 
 ```bash
 # test-sps-react (Frontend)
