@@ -22,7 +22,7 @@
 
 ## Executando a aplicação com Docker
 ### Requisitos
-- Ter o **Docker Compose** instalado.
+- Ter o [**Docker Compose**](https://docs.docker.com/compose/) instalado.
 
 ### Como executar
 ```bash
