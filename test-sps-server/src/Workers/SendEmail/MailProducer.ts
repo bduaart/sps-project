@@ -18,6 +18,6 @@ export const MailProducer = {
 
     await sqs.send(command);
 
-    logger.info(`Sending message SQS Mail Producer Queue to ${payload.email}`);
+    logger.info(`Sending message SQS to ${QUEUE_URL}`);
   },
 };

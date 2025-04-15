@@ -30,6 +30,19 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 id:
+ *                  type: string
+ *                  format: uuid
+ *                  example: 142d799c-0d72-4a73-a22b-240fbfb78e73
+ *                 name:
+ *                  type: string
+ *                  example: Bruno Duarte
+ *                 email:
+ *                  type: string
+ *                  example: contato.bduaart@gmail.com
+ *                 type:
+ *                  type: string
+ *                  example: ADMIN
  *                 token:
  *                   type: string
  *                   example: eyJhbGciOiJIUzI1NiIsInR...

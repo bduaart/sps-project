@@ -22,8 +22,9 @@ async function poll() {
       for (const message of response.Messages) {
         if (message.Body) {
           const { name, email } = JSON.parse(message.Body);
-          logger.info("Sending message SQS");
-          console.log(` Simulando envio de email para ${email} - Olá, ${name}`);
+          logger.info("Consuming message SQS");
+          logger.info(`Simulando envio de email para ${email}`);
+          logger.info(`Olá, ${name}`);
 
           if (message.ReceiptHandle) {
             await sqs.send(

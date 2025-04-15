@@ -47,6 +47,15 @@ router.use(authMiddleware(process.env.JWT_SECRET || "default-secret"));
  *     responses:
  *       201:
  *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                  type: string
+ *                  format: uuid
+ *                  example: 142d799c-0d72-4a73-a22b-240fbfb78e73
  *       400:
  *         description: Erro de validação
  */
@@ -76,7 +85,49 @@ router.post(
  *         description: Tamanho da página
  *     responses:
  *       200:
- *         description: Ok
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 pagination:
+ *                   type: object
+ *                   properties:
+ *                     page:
+ *                       type: integer
+ *                       example: 1
+ *                     pageSize:
+ *                       type: integer
+ *                       example: 10
+ *                     total:
+ *                       type: integer
+ *                       example: 42
+ *                 items:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         example: "e40f7b4a-1f19-40ea-9f3d-9e7c2de46232"
+ *                       name:
+ *                         type: string
+ *                         example: Bruno Duarte
+ *                       email:
+ *                         type: string
+ *                         example: bruno@example.com
+ *                       type:
+ *                         type: string
+ *                         example: admin
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                         example: "2024-04-14T10:45:00.000Z"
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
+ *                         example: "2024-04-15T15:30:00.000Z"
  */
 router.get(
   "/",
@@ -101,6 +152,30 @@ router.get(
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *            schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                  type: string
+ *                  format: uuid
+ *                  example: 142d799c-0d72-4a73-a22b-240fbfb78e73
+ *                 type:
+ *                  type: string
+ *                  example: ADMIN
+ *                 name:
+ *                  type: string
+ *                  example: Bruno Duarte
+ *                 email:
+ *                  type: string
+ *                  example: contato.bduaart@gmail.com
+ *                 createdAt:
+ *                   type: string
+ *                   example: '15/04/2025'
+ *                 updatedAt:
+ *                   type: string
+ *                   example: '15/04/2025'
  *       404:
  *         description: Not Found
  */

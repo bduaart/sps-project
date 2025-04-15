@@ -7,6 +7,7 @@ import {
   Typography,
   CircularProgress,
   IconButton,
+  Select, MenuItem, FormControl, InputLabel
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -106,15 +107,19 @@ export default function UserView() {
             disabled={!editing}
             onChange={(e) => handleChange("email", e.target.value)}
           />
+          <FormControl fullWidth margin="normal" disabled={!editing}>
+            <InputLabel id="tipo-label">Tipo</InputLabel>
+            <Select
+                labelId="tipo-label"
+                value={user.type}
+                label="Tipo"
+                onChange={(e) => handleChange("type", e.target.value as "admin" | "user")}
+            >
+              <MenuItem value="admin">Admin</MenuItem>
+              <MenuItem value="user">Usuário</MenuItem>
+            </Select>
+          </FormControl>
 
-          <TextField
-            label="Tipo"
-            fullWidth
-            value={user.type}
-            margin="normal"
-            disabled={!editing}
-            onChange={(e) => handleChange("type", e.target.value)}
-          />
         </Paper>
       </Container>
     </>

@@ -2,7 +2,7 @@ import { UpdateUserDto } from "../Dto/UserDto";
 import { UserEntity } from "../Repositories/entities/UserEntity";
 
 export class UpdateUserTransformer {
-  public async fromApi(data: any): Promise<UpdateUserDto> {
+  public fromApi(data: any): UpdateUserDto {
     return {
       id: data.id,
       name: data.name,
@@ -11,10 +11,7 @@ export class UpdateUserTransformer {
       password: data.password,
     };
   }
-  public async toEntity(
-    dto: UpdateUserDto,
-    entity: UserEntity,
-  ): Promise<UserEntity> {
+  public toEntity(dto: UpdateUserDto, entity: UserEntity): UserEntity {
     if (dto.name !== undefined) entity.name = dto.name;
     if (dto.email !== undefined) entity.email = dto.email;
     if (dto.type !== undefined) entity.type = dto.type;

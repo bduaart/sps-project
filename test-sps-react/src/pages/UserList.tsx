@@ -91,11 +91,14 @@ export default function UserList() {
       });
       setUserToDelete(null);
       fetchUsers(page);
-    } catch (e) {
+    } catch (e: any) {
       const status = e?.response?.status;
 
       let message = "Erro ao remover usuário";
 
+      if (status === 400 ) {
+        message = e.response.data.message;
+      }
       if (status === 403) {
         message =
           "Você não tem permissão para remover usuários. Apenas admnistradores podem remover usuários.";
@@ -222,10 +225,18 @@ export default function UserList() {
                   setOpen(false);
                   reset();
                   fetchUsers(page);
-                } catch {
+                } catch(e: any) {
+                  console.log(e);
+                  const status = e?.response?.status;
+
+                  let message = "Erro ao criar usuário";
+
+                  if (status === 400 ) {
+                    message = e.response.data.message;
+                  }
                   setSnackbar({
                     open: true,
-                    message: "Erro ao criar usuário",
+                    message: message,
                     severity: "error",
                   });
                 }

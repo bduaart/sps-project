@@ -2,7 +2,7 @@
 services:
   api:
     build: .
-    container_name: node-crud-api
+    container_name: test-sps-server
     ports:
       - "3000:3000"
       - "9555:9229"
@@ -34,12 +34,21 @@ services:
 
   worker:
     build: .
-    container_name: node-crud-worker
+    container_name: test-sps-worker
     command: yarn worker
     depends_on:
       - localstack
     networks:
       - net_crud_api
+
+  web:
+    build:
+      context: ../test-sps-react
+    container_name: test-sps-web
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
 
 networks:
   net_crud_api:

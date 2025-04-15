@@ -31,52 +31,92 @@ export class UserController {
       const response = this.createUserTransformer.toApi(userDto);
       return res.status(201).json(response);
     } catch (e: any) {
-      return res.status(400).json({ message: e.message });
+      if (e.name === "NotFoundError") {
+        return res.status(404).json({ message: e.message });
+      }
+
+      if (e.name === "BusinessRuleError") {
+        return res.status(400).json({ message: e.message });
+      }
+
+      return res.status(500).json({ message: "Erro interno no servidor" });
     }
   }
 
   async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      let getUserDto = await this.getUserTransformer.fromApi(req.query);
+      let getUserDto = this.getUserTransformer.fromApi(req.query);
       getUserDto = await this.getUserService.execute(getUserDto);
-      const response = await this.getUserTransformer.toApi(getUserDto);
+      const response = this.getUserTransformer.toApi(getUserDto);
       return res.status(200).json(response);
     } catch (e: any) {
-      return res.status(400).json({ message: e.message });
+      if (e.name === "NotFoundError") {
+        return res.status(404).json({ message: e.message });
+      }
+
+      if (e.name === "BusinessRuleError") {
+        return res.status(400).json({ message: e.message });
+      }
+
+      return res.status(500).json({ message: "Erro interno no servidor" });
     }
   }
 
   async findById(req: Request, res: Response): Promise<Response> {
     try {
-      let userDto = await this.getUserByIdTransformer.fromApi(req.params);
+      let userDto = this.getUserByIdTransformer.fromApi(req.params);
       userDto = await this.getUserByIdService.execute(userDto);
-      const response = await this.getUserByIdTransformer.toApi(userDto);
+      const response = this.getUserByIdTransformer.toApi(userDto);
       return res.status(200).json(response);
     } catch (e: any) {
-      return res.status(404).json({ message: e.message });
+      if (e.name === "NotFoundError") {
+        return res.status(404).json({ message: e.message });
+      }
+
+      if (e.name === "BusinessRuleError") {
+        return res.status(400).json({ message: e.message });
+      }
+
+      return res.status(500).json({ message: "Erro interno no servidor" });
     }
   }
 
   async update(req: Request, res: Response): Promise<Response> {
     try {
-      const dto = await this.updateUserTransformer.fromApi({
+      const dto = this.updateUserTransformer.fromApi({
         ...req.params,
         ...req.body,
       });
       await this.updateUserService.execute(dto);
       return res.status(204).json();
     } catch (e: any) {
-      return res.status(400).json({ message: e.message });
+      if (e.name === "NotFoundError") {
+        return res.status(404).json({ message: e.message });
+      }
+
+      if (e.name === "BusinessRuleError") {
+        return res.status(400).json({ message: e.message });
+      }
+
+      return res.status(500).json({ message: "Erro interno no servidor" });
     }
   }
 
   async delete(req: Request, res: Response): Promise<Response> {
     try {
-      const dto = await this.deleteUserTransformer.fromApi(req.params);
-      await this.deleteUserService.execute(dto);
+      const dto = this.deleteUserTransformer.fromApi(req.params);
+      await this.deleteUserService.execute(dto, req.user.id);
       return res.status(204).send();
     } catch (e: any) {
-      return res.status(404).json({ message: e.message });
+      if (e.name === "NotFoundError") {
+        return res.status(404).json({ message: e.message });
+      }
+
+      if (e.name === "BusinessRuleError") {
+        return res.status(400).json({ message: e.message });
+      }
+
+      return res.status(500).json({ message: "Erro interno no servidor" });
     }
   }
 }

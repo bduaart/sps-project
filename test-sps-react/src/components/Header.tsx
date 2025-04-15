@@ -27,7 +27,7 @@ export default function Header() {
 
   const handleLogout = () => {
     setToken(null);
-    navigate("/login");
+    navigate("/");
   };
 
   return (

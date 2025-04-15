@@ -1,7 +1,7 @@
 import { UserDto } from "../Dto/UserDto";
 
 export class DeleteUserTransformer {
-  public async fromApi(data: any): Promise<UserDto> {
+  public fromApi(data: any): UserDto {
     return {
       id: data.id,
     };

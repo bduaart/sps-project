@@ -1,6 +1,7 @@
 import { IUserRepository } from "../Repositories/IUserRepository";
 import { UserDto } from "../Dto/UserDto";
 import { GetUserByIdTransformer } from "../Transformer/GetUserByIdTransformer";
+import { NotFoundError } from "../../Errors/NotFoundError";
 
 export class GetUserByIdService {
   constructor(
@@ -11,7 +12,7 @@ export class GetUserByIdService {
   public async execute(data: UserDto): Promise<UserDto> {
     const exists = await this.userRepository.findById(data.id);
     if (!exists) {
-      throw new Error("Usuário não existe!");
+      throw new NotFoundError("Usuário não existe!");
     }
     return this.transformer.toDto(exists);
   }

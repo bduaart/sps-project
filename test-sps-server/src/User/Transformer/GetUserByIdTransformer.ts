@@ -3,7 +3,7 @@ import { GetUserByIdResponse } from "../Response/GetUserByIdResponse";
 import { UserEntity } from "../Repositories/entities/UserEntity";
 
 export class GetUserByIdTransformer {
-  public async fromApi(data: any): Promise<UserDto> {
+  public fromApi(data: any): UserDto {
     return {
       id: data.id,
     };
@@ -20,7 +20,7 @@ export class GetUserByIdTransformer {
     };
   }
 
-  public async toApi(dto: UserDto): Promise<GetUserByIdResponse> {
+  public toApi(dto: UserDto): GetUserByIdResponse {
     return <GetUserByIdResponse>{
       id: dto.id,
       type: dto.type,

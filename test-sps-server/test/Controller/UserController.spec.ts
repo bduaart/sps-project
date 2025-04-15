@@ -3,7 +3,7 @@ import app from "../../src/app";
 
 describe("User routes", () => {
   it("deve retornar 401 se não enviar token", async () => {
-    const res = await request(app).get("/api/users");
+    const res = await request(app).get("/api/user");
     expect(res.status).toBe(401);
   });
 
@@ -16,7 +16,7 @@ describe("User routes", () => {
     const token = login.body.token;
 
     const res = await request(app)
-      .get("/api/users")
+      .get("/api/user")
       .set("Authorization", `Bearer ${token}`);
 
     expect(res.status).toBe(200);

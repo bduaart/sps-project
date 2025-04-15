@@ -3,14 +3,14 @@ import { GetUserDto } from "../Dto/UserDto";
 import { UserEntity } from "../Repositories/entities/UserEntity";
 
 export class GetUserTransformer {
-  public async fromApi(data: any): Promise<GetUserDto> {
+  public fromApi(data: any): GetUserDto {
     return {
       page: data.page,
       pageSize: data.pageSize,
     };
   }
 
-  public async toApi(dto: GetUserDto): Promise<GetUserResponse> {
+  public toApi(dto: GetUserDto): GetUserResponse {
     return {
       pagination: {
         page: dto.page,
